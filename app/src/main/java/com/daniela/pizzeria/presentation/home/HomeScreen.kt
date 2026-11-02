@@ -23,11 +23,12 @@ import com.daniela.pizzeria.presentation.AppViewModelProvider
 @Composable
 fun HomeScreen(
     onLogout: () -> Unit,
-    onProductoClick: (String) -> Unit, // Para ir al detalle
+    onProductoClick: (Producto) -> Unit, // Para ir al detalle
     onAddClick: () -> Unit, // Para ir al formulario
     viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var productoAEliminar by remember { mutableStateOf<Producto?>(null) }
 
     Scaffold(
         topBar = {
@@ -76,13 +77,34 @@ fun HomeScreen(
                     items(uiState.productos, key = { it.id }) { producto ->
                         ProductoItem(
                             producto = producto,
-                            onClick = { onProductoClick(producto.id) },
-                            onDelete = { viewModel.eliminarProducto(producto.id) }
+                            onClick = { onProductoClick(producto) }, // Cambiado a Producto
+                            onDelete = { productoAEliminar = producto } // Abre el diálogo
                         )
                     }
                 }
             }
         }
+    }
+
+    if (productoAEliminar != null) {
+        AlertDialog(
+            onDismissRequest = { productoAEliminar = null },
+            title = { Text("Eliminar Producto") },
+            text = { Text("¿Estás seguro de que deseas eliminar ${productoAEliminar?.nombre}?") },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.eliminarProducto(productoAEliminar!!.id)
+                    productoAEliminar = null
+                }) {
+                    Text("Eliminar", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { productoAEliminar = null }) {
+                    Text("Cancelar")
+                }
+            }
+        )
     }
 }
 

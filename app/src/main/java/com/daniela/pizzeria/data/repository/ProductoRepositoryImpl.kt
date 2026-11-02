@@ -2,6 +2,7 @@ package com.daniela.pizzeria.data.repository
 
 import com.daniela.pizzeria.data.remote.api.ApiService
 import com.daniela.pizzeria.data.remote.dto.ProductoCreateDto
+import com.daniela.pizzeria.domain.model.Ingrediente
 import com.daniela.pizzeria.domain.model.Producto
 import com.daniela.pizzeria.domain.model.toDomain
 import com.daniela.pizzeria.domain.repository.ProductoRepository
@@ -26,7 +27,8 @@ class ProductoRepositoryImpl(private val api: ApiService) : ProductoRepository {
                 descripcion = producto.descripcion,
                 precio = producto.precio,
                 categoriaId = producto.categoriaId,
-                disponible = producto.disponible
+                disponible = producto.disponible,
+                ingredientes = producto.ingredientes.map { it.id }
             )
             api.createProducto(dto)
             Result.success(Unit)
@@ -42,7 +44,8 @@ class ProductoRepositoryImpl(private val api: ApiService) : ProductoRepository {
                 descripcion = producto.descripcion,
                 precio = producto.precio,
                 categoriaId = producto.categoriaId,
-                disponible = producto.disponible
+                disponible = producto.disponible,
+                ingredientes = producto.ingredientes.map { it.id }
             )
             api.updateProducto(id, dto)
             Result.success(Unit)
@@ -55,6 +58,15 @@ class ProductoRepositoryImpl(private val api: ApiService) : ProductoRepository {
         try {
             api.deleteProducto(id)
             Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getIngredientes(): Result<List<Ingrediente>> = withContext(Dispatchers.IO) {
+        try {
+            val response = api.getIngredientes()
+            Result.success(response.map { it.toDomain() })
         } catch (e: Exception) {
             Result.failure(e)
         }

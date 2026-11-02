@@ -25,4 +25,8 @@ interface ApiService {
 
     @DELETE("productos/{id}")
     suspend fun deleteProducto(@Path("id") id: String)
+
+    @GET("productos/ingredientes")
+    suspend fun getIngredientes(): List<IngredienteDto>
+
 }
