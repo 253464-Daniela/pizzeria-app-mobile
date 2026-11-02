@@ -1,19 +1,36 @@
 package com.daniela.pizzeria.presentation.detail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.daniela.pizzeria.domain.model.Producto
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductoDetailScreen(producto: Producto?, onNavigateBack: () -> Unit) {
+fun ProductoDetailScreen(
+    producto: Producto?,
+    onNavigateBack: () -> Unit,
+    onEditClick: (Producto) -> Unit
+) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Detalle del Producto") })
+            TopAppBar(
+                title = { Text("Detalle del Producto") },
+                actions = {
+                    if (producto != null) {
+                        IconButton(onClick = { onEditClick(producto) }) {
+                            Icon(Icons.Default.Edit, contentDescription = "Editar")
+                        }
+                    }
+                }
+            )
         }
     ) { padding ->
         if (producto == null) {

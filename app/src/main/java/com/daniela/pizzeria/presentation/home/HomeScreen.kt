@@ -27,8 +27,13 @@ fun HomeScreen(
     onAddClick: () -> Unit, // Para ir al formulario
     viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var productoAEliminar by remember { mutableStateOf<Producto?>(null) }
+
+    LaunchedEffect(Unit) {
+        viewModel.cargarProductos()
+    }
 
     Scaffold(
         topBar = {

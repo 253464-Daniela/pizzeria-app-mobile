@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.daniela.pizzeria.PizzeriaApplication
+import com.daniela.pizzeria.domain.model.Producto
 import com.daniela.pizzeria.presentation.auth.AuthScreen
 import com.daniela.pizzeria.presentation.detail.ProductoDetailScreen
 import com.daniela.pizzeria.presentation.form.ProductoFormScreen
@@ -63,13 +64,26 @@ fun PizzeriaNavigation() {
             val producto = navController.previousBackStackEntry?.savedStateHandle?.get<com.daniela.pizzeria.domain.model.Producto>("producto")
             ProductoDetailScreen(
                 producto = producto,
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.popBackStack() },
+                onEditClick = { prod ->
+                    // Guardamos el producto para el formulario y navegamos
+                    navController.currentBackStackEntry?.savedStateHandle?.set("producto_a_editar", prod)
+                    navController.navigate("formulario")
+                }
             )
         }
 
         composable("formulario") {
+            val productoAEditar = navController.previousBackStackEntry?.savedStateHandle?.get<Producto>("producto_a_editar")
             ProductoFormScreen(
-                onNavigateBack = { navController.popBackStack() }
+                productoAEditar = productoAEditar,
+                onNavigateBack = {
+                    if (productoAEditar != null) {
+                        navController.popBackStack("home", inclusive = false)
+                    } else {
+                        navController.popBackStack()
+                    }
+                }
             )
         }
     }

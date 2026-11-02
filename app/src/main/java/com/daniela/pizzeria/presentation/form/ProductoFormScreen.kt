@@ -9,14 +9,25 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.daniela.pizzeria.presentation.AppViewModelProvider
+import androidx.compose.runtime.LaunchedEffect
+import com.daniela.pizzeria.domain.model.Producto
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductoFormScreen(
+    productoAEditar: Producto? = null,
     onNavigateBack: () -> Unit,
     viewModel: ProductoFormViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+
+    LaunchedEffect(productoAEditar) {
+        if (productoAEditar != null) {
+            viewModel.cargarProducto(productoAEditar)
+        }
+    }
 
     LaunchedEffect(uiState.isSuccess) {
         if (uiState.isSuccess) {
