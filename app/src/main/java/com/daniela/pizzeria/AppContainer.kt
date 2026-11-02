@@ -31,7 +31,7 @@ class AppContainer(context: Context) {
             if (token != null) {
                 request.addHeader("Authorization", "Bearer $token")
             }
-            request.build()
+            chain.proceed(request.build())
         }
         .connectTimeout(30, TimeUnit.SECONDS)
         .build()

@@ -6,13 +6,17 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.daniela.pizzeria.PizzeriaApplication
 import com.daniela.pizzeria.presentation.auth.AuthViewModel
+import com.daniela.pizzeria.presentation.home.HomeViewModel
+
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
             AuthViewModel(pizzeriaApplication().container.authRepository)
         }
-        // Aquí agregaremos el ProductoViewModel más adelante...
+        initializer {
+            HomeViewModel(pizzeriaApplication().container.productoRepository)
+        }
     }
 }
 
