@@ -7,11 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.daniela.pizzeria.ui.theme.PizzeriaTheme
+import com.daniela.pizzeria.presentation.PizzeriaNavigation
+import com.daniela.pizzeria.ui.theme.PizzeriaTheme // (Asegúrate de que este sea el nombre de tu tema)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,28 +18,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             PizzeriaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    androidx.compose.foundation.layout.Box(
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    ) {
+                        PizzeriaNavigation()
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PizzeriaTheme {
-        Greeting("Android")
     }
 }
