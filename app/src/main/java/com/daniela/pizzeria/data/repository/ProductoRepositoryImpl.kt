@@ -13,7 +13,7 @@ class ProductoRepositoryImpl(private val api: ApiService) : ProductoRepository {
 
     override suspend fun getProductos(): Result<List<Producto>> = withContext(Dispatchers.IO) {
         try {
-            val response = api.getProductos()
+            val response = api.getProductos(soloDisponibles = false)
             Result.success(response.map { it.toDomain() })
         } catch (e: Exception) {
             Result.failure(e)

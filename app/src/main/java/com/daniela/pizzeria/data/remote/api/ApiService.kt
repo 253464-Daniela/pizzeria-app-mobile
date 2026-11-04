@@ -15,7 +15,7 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequestDto): AuthResponseDto
 
     @GET("productos")
-    suspend fun getProductos(): List<ProductoDto>
+    suspend fun getProductos(@Query("solo_disponibles") soloDisponibles: Boolean = false): List<ProductoDto>
 
     @POST("productos")
     suspend fun createProducto(@Body producto: ProductoCreateDto): ProductoDto

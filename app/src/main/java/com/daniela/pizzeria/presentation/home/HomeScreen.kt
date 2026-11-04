@@ -158,6 +158,14 @@ fun ProductoItem(producto: Producto, onClick: () -> Unit, onDelete: () -> Unit) 
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                if (!producto.disponible) {
+                    Text(
+                        text = "AGOTADO",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 Text(
                     text = producto.descripcion,
                     style = MaterialTheme.typography.bodySmall,
