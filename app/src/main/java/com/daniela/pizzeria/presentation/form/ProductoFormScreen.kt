@@ -1,6 +1,7 @@
 package com.daniela.pizzeria.presentation.form
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,6 +11,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.daniela.pizzeria.presentation.AppViewModelProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.text.font.FontWeight
 import com.daniela.pizzeria.domain.model.Producto
 
 
@@ -37,14 +39,21 @@ fun ProductoFormScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(if (uiState.isEditMode) "Editar Producto" else "Nuevo Producto") })
+            CenterAlignedTopAppBar(
+                title = { Text(if (uiState.isEditMode) "Editar Producto" else "Nuevo Producto", fontWeight = FontWeight.Bold) },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            )
         }
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(androidx.compose.foundation.rememberScrollState()), // Para que no se corte en pantallas pequeñas
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             OutlinedTextField(
