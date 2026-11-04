@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.domain.repository
+package com.daniela.pizzeria.data.repository
 
 interface AuthRepository {
     suspend fun login(email: String, password: String): Result<Unit>

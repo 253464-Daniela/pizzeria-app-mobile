@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.domain.model
+package com.daniela.pizzeria.data.model
 
 import com.daniela.pizzeria.data.remote.dto.IngredienteDto
 import com.daniela.pizzeria.data.remote.dto.ProductoDto

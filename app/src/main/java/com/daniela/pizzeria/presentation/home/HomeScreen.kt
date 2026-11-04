@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.daniela.pizzeria.domain.model.Producto
+import com.daniela.pizzeria.data.model.Producto
 import com.daniela.pizzeria.presentation.AppViewModelProvider
 import java.util.Locale
 import androidx.compose.material.icons.filled.Warning

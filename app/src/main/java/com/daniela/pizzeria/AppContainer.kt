@@ -5,8 +5,8 @@ import com.daniela.pizzeria.data.local.SessionManager
 import com.daniela.pizzeria.data.remote.api.ApiService
 import com.daniela.pizzeria.data.repository.AuthRepositoryImpl
 import com.daniela.pizzeria.data.repository.ProductoRepositoryImpl
-import com.daniela.pizzeria.domain.repository.AuthRepository
-import com.daniela.pizzeria.domain.repository.ProductoRepository
+import com.daniela.pizzeria.data.repository.AuthRepository
+import com.daniela.pizzeria.data.repository.ProductoRepository
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

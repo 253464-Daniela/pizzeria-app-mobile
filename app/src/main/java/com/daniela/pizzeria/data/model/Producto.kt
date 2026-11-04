@@ -1,10 +1,12 @@
-package com.daniela.pizzeria.domain.model
+package com.daniela.pizzeria.data.model
+
+import java.io.Serializable
 
 data class Ingrediente(
     val id: String,
     val nombre: String,
     val precioExtra: Double
-): java.io.Serializable
+): Serializable
 
 data class Producto(
     val id: String,
@@ -14,4 +16,4 @@ data class Producto(
     val disponible: Boolean,
     val categoriaId: String,
     val ingredientes: List<Ingrediente> = emptyList()
-): java.io.Serializable
+): Serializable

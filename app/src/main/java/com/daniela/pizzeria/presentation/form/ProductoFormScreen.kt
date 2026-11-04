@@ -14,7 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.daniela.pizzeria.presentation.AppViewModelProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.text.font.FontWeight
-import com.daniela.pizzeria.domain.model.Producto
+import com.daniela.pizzeria.data.model.Producto
 
 
 @OptIn(ExperimentalMaterial3Api::class)

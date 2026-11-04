@@ -2,10 +2,9 @@ package com.daniela.pizzeria.data.repository
 
 import com.daniela.pizzeria.data.remote.api.ApiService
 import com.daniela.pizzeria.data.remote.dto.ProductoCreateDto
-import com.daniela.pizzeria.domain.model.Ingrediente
-import com.daniela.pizzeria.domain.model.Producto
-import com.daniela.pizzeria.domain.model.toDomain
-import com.daniela.pizzeria.domain.repository.ProductoRepository
+import com.daniela.pizzeria.data.model.Ingrediente
+import com.daniela.pizzeria.data.model.Producto
+import com.daniela.pizzeria.data.model.toDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

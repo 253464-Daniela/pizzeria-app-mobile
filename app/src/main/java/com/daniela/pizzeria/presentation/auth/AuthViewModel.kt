@@ -2,7 +2,7 @@ package com.daniela.pizzeria.presentation.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.daniela.pizzeria.domain.repository.AuthRepository
+import com.daniela.pizzeria.data.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

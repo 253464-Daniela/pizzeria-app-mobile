@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.daniela.pizzeria.PizzeriaApplication
-import com.daniela.pizzeria.domain.model.Producto
+import com.daniela.pizzeria.data.model.Producto
 import com.daniela.pizzeria.presentation.auth.AuthScreen
 import com.daniela.pizzeria.presentation.detail.ProductoDetailScreen
 import com.daniela.pizzeria.presentation.form.ProductoFormScreen
@@ -61,7 +61,7 @@ fun PizzeriaNavigation() {
 
         composable("detalle") {
             // Recuperamos el objeto Producto que guardamos al hacer clic
-            val producto = navController.previousBackStackEntry?.savedStateHandle?.get<com.daniela.pizzeria.domain.model.Producto>("producto")
+            val producto = navController.previousBackStackEntry?.savedStateHandle?.get<Producto>("producto")
             ProductoDetailScreen(
                 producto = producto,
                 onNavigateBack = { navController.popBackStack() },

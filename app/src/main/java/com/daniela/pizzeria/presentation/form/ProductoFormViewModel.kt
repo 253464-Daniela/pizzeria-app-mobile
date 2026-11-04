@@ -2,9 +2,9 @@ package com.daniela.pizzeria.presentation.form
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.daniela.pizzeria.domain.model.Ingrediente
-import com.daniela.pizzeria.domain.model.Producto
-import com.daniela.pizzeria.domain.repository.ProductoRepository
+import com.daniela.pizzeria.data.model.Ingrediente
+import com.daniela.pizzeria.data.model.Producto
+import com.daniela.pizzeria.data.repository.ProductoRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

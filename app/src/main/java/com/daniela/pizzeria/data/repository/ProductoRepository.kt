@@ -1,7 +1,7 @@
-package com.daniela.pizzeria.domain.repository
+package com.daniela.pizzeria.data.repository
 
-import com.daniela.pizzeria.domain.model.Ingrediente
-import com.daniela.pizzeria.domain.model.Producto
+import com.daniela.pizzeria.data.model.Ingrediente
+import com.daniela.pizzeria.data.model.Producto
 
 interface ProductoRepository {
     suspend fun getProductos(): Result<List<Producto>>
