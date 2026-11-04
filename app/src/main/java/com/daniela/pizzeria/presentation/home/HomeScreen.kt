@@ -22,6 +22,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.daniela.pizzeria.domain.model.Producto
 import com.daniela.pizzeria.presentation.AppViewModelProvider
 import java.util.Locale
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.filled.Inbox
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,39 +70,115 @@ fun HomeScreen(
             }
         }
     ) { padding ->
-        Box(modifier = Modifier.fillMaxSize().padding(padding)) {
+        PullToRefreshBox(
+            isRefreshing = uiState.isRefreshing,
+            onRefresh = { viewModel.cargarProductos(isRefresh = true) },
+            modifier = Modifier.fillMaxSize().padding(padding),
 
-            if (uiState.isLoading) {
-                // ESTADO: CARGANDO
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            } else if (uiState.error != null) {
-                // ESTADO: ERROR
-                Column(
-                    modifier = Modifier.align(Alignment.Center),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = uiState.error!!, color = MaterialTheme.colorScheme.error)
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { viewModel.cargarProductos() }) {
-                        Text("Reintentar")
+        ) {
+            Box(modifier = Modifier.fillMaxSize()) {
+
+                when {
+                    uiState.isLoading -> {
+                        Column(
+                            modifier = Modifier.align(Alignment.Center),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(48.dp),
+                                color = MaterialTheme.colorScheme.primary,
+                                strokeWidth = 4.dp
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "Cargando menú...",
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+                            )
+                        }
                     }
-                }
-            } else if (uiState.productos.isEmpty()) {
-                // ESTADO: VACÍO
-                Text("No hay productos en el menú.", modifier = Modifier.align(Alignment.Center))
-            } else {
-                // ESTADO: ÉXITO
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(uiState.productos, key = { it.id }) { producto ->
-                        ProductoItem(
-                            producto = producto,
-                            onClick = { onProductoClick(producto) }, // Cambiado a Producto
-                            onDelete = { productoAEliminar = producto } // Abre el diálogo
-                        )
+
+                    uiState.error != null -> {
+                        Column(
+                            modifier = Modifier.align(Alignment.Center).padding(32.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Warning,
+                                contentDescription = "Error",
+                                modifier = Modifier.size(64.dp),
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "¡Ups! Algo salió mal",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = uiState.error!!,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.error,
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Button(
+                                onClick = { viewModel.cargarProductos() },
+                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                            ) {
+                                Icon(Icons.Default.Refresh, contentDescription = null)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text("Reintentar")
+                            }
+                        }
+                    }
+
+                    uiState.productos.isEmpty() -> {
+                        Column(
+                            modifier = Modifier.align(Alignment.Center).padding(32.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Inbox,
+                                contentDescription = "Vacío",
+                                modifier = Modifier.size(80.dp),
+                                tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "El menú está vacío",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Aún no has agregado ningún producto a la pizzería.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Button(onClick = onAddClick) {
+                                Icon(Icons.Default.Add, contentDescription = null)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text("Agregar mi primer producto")
+                            }
+                        }
+                    }
+
+                    else -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            contentPadding = PaddingValues(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            items(uiState.productos, key = { it.id }) { producto ->
+                                ProductoItem(
+                                    producto = producto,
+                                    onClick = { onProductoClick(producto) },
+                                    onDelete = { productoAEliminar = producto }
+                                )
+                            }
+                        }
                     }
                 }
             }

@@ -18,16 +18,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PizzeriaTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    contentWindowInsets = WindowInsets(0,0,0,0)
-                ) { innerPadding ->
-                    androidx.compose.foundation.layout.Box(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        PizzeriaNavigation()
-                    }
-                }
+                PizzeriaNavigation()
             }
         }
     }

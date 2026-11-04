@@ -20,17 +20,32 @@ class HomeViewModel(
         cargarProductos() // Carga inicial al abrir la pantalla
     }
 
-    fun cargarProductos() {
+    fun cargarProductos(isRefresh: Boolean = false) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null) }
+            if (isRefresh) {
+                _uiState.update { it.copy(isRefreshing = true) }
+            } else {
+                _uiState.update { it.copy(isLoading = true, error = null) }
+            }
 
             val result = productoRepository.getProductos()
 
             result.onSuccess { lista ->
-                _uiState.update { it.copy(isLoading = false, productos = lista) }
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        isRefreshing = false, // <-- Apagamos el refresco
+                        productos = lista,
+                        error = null
+                    )
+                }
             }.onFailure { exception ->
                 _uiState.update {
-                    it.copy(isLoading = false, error = exception.message ?: "Error al cargar productos")
+                    it.copy(
+                        isLoading = false,
+                        isRefreshing = false, // <-- Apagamos el refresco
+                        error = exception.message ?: "Error al cargar productos"
+                    )
                 }
             }
         }
