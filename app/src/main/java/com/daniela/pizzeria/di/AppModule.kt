@@ -2,7 +2,7 @@ package com.daniela.pizzeria.di
 
 import android.content.Context
 import com.daniela.pizzeria.data.datasource.ApiService
-import com.daniela.pizzeria.data.local.SessionManager
+import com.daniela.pizzeria.data.datasource.SessionManager
 import com.daniela.pizzeria.data.repository.AuthRepository
 import com.daniela.pizzeria.data.repository.AuthRepositoryImpl
 import com.daniela.pizzeria.data.repository.ProductoRepository

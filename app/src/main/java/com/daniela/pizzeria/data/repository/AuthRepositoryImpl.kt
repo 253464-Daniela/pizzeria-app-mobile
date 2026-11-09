@@ -1,6 +1,6 @@
 package com.daniela.pizzeria.data.repository
 
-import com.daniela.pizzeria.data.local.SessionManager
+import com.daniela.pizzeria.data.datasource.SessionManager
 import com.daniela.pizzeria.data.datasource.ApiService
 import com.daniela.pizzeria.data.dto.RegisterRequestDto
 import kotlinx.coroutines.Dispatchers

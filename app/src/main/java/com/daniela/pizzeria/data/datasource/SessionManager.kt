@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.data.local
+package com.daniela.pizzeria.data.datasource
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
