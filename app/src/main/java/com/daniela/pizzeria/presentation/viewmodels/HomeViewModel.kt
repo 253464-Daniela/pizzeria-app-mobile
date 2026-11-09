@@ -1,8 +1,9 @@
-package com.daniela.pizzeria.presentation.home
+package com.daniela.pizzeria.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.daniela.pizzeria.data.repository.ProductoRepository
+import com.daniela.pizzeria.presentation.screens.HomeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

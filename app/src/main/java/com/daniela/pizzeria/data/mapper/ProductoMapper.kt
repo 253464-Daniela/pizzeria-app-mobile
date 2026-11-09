@@ -1,7 +1,9 @@
-package com.daniela.pizzeria.data.model
+package com.daniela.pizzeria.data.mapper
 
-import com.daniela.pizzeria.data.remote.dto.IngredienteDto
-import com.daniela.pizzeria.data.remote.dto.ProductoDto
+import com.daniela.pizzeria.data.dto.IngredienteDto
+import com.daniela.pizzeria.data.dto.ProductoDto
+import com.daniela.pizzeria.data.model.Ingrediente
+import com.daniela.pizzeria.data.model.Producto
 
 
 fun IngredienteDto.toDomain(): Ingrediente {

@@ -1,14 +1,10 @@
-package com.daniela.pizzeria.presentation
+package com.daniela.pizzeria.presentation.viewmodels
 
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.daniela.pizzeria.PizzeriaApplication
-import com.daniela.pizzeria.presentation.auth.AuthViewModel
-import com.daniela.pizzeria.presentation.home.HomeViewModel
-import com.daniela.pizzeria.presentation.form.ProductoFormViewModel // <-- NUEVO IMPORT
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {

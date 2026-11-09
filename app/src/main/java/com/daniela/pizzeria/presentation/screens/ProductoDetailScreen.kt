@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.presentation.detail
+package com.daniela.pizzeria.presentation.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.FlowRow
@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.daniela.pizzeria.data.model.Producto
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -105,7 +106,7 @@ fun ProductoDetailScreen(
                     ) {
                         Text("Precio:", style = MaterialTheme.typography.titleMedium)
                         Text(
-                            text = "$${String.format(java.util.Locale.US, "%.2f", producto.precio)}",
+                            text = "$${String.format(Locale.US, "%.2f", producto.precio)}",
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.secondary

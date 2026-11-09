@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.presentation.auth
+package com.daniela.pizzeria.presentation.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -15,7 +15,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.daniela.pizzeria.presentation.AppViewModelProvider
+import com.daniela.pizzeria.presentation.viewmodels.AppViewModelProvider
+import com.daniela.pizzeria.presentation.viewmodels.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

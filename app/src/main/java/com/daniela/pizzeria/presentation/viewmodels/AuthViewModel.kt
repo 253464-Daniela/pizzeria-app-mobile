@@ -1,8 +1,10 @@
-package com.daniela.pizzeria.presentation.auth
+package com.daniela.pizzeria.presentation.viewmodels
 
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.daniela.pizzeria.data.repository.AuthRepository
+import com.daniela.pizzeria.presentation.screens.AuthUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,7 +45,7 @@ class AuthViewModel(
             _uiState.update { it.copy(error = "Todos los campos son obligatorios") }
             return
         }
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(state.email).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(state.email).matches()) {
             _uiState.update { it.copy(error = "Correo electrónico inválido") }
             return
         }

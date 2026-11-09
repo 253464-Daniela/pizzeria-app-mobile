@@ -1,8 +1,8 @@
 package com.daniela.pizzeria.data.repository
 
 import com.daniela.pizzeria.data.local.SessionManager
-import com.daniela.pizzeria.data.remote.api.ApiService
-import com.daniela.pizzeria.data.remote.dto.RegisterRequestDto
+import com.daniela.pizzeria.data.datasource.ApiService
+import com.daniela.pizzeria.data.dto.RegisterRequestDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

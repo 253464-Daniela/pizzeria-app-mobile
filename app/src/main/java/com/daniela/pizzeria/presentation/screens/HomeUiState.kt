@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.presentation.home
+package com.daniela.pizzeria.presentation.screens
 
 import com.daniela.pizzeria.data.model.Producto
 

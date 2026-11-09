@@ -1,4 +1,4 @@
-package com.daniela.pizzeria.presentation.auth
+package com.daniela.pizzeria.presentation.screens
 
 // Un solo objeto para manejar todo el estado de Login y Register
 data class AuthUiState(

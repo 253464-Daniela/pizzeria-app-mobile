@@ -9,10 +9,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.daniela.pizzeria.PizzeriaApplication
 import com.daniela.pizzeria.data.model.Producto
-import com.daniela.pizzeria.presentation.auth.AuthScreen
-import com.daniela.pizzeria.presentation.detail.ProductoDetailScreen
-import com.daniela.pizzeria.presentation.form.ProductoFormScreen
-import com.daniela.pizzeria.presentation.home.HomeScreen
+import com.daniela.pizzeria.presentation.screens.AuthScreen
+import com.daniela.pizzeria.presentation.screens.ProductoDetailScreen
+import com.daniela.pizzeria.presentation.screens.ProductoFormScreen
+import com.daniela.pizzeria.presentation.screens.HomeScreen
 import kotlinx.coroutines.launch
 
 @Composable
