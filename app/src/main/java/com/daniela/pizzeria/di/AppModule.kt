@@ -16,7 +16,7 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.util.concurrent.TimeUnit
 
 class AppContainer(context: Context) {
-    private val baseUrl = "http://ec2-18-214-199-193.compute-1.amazonaws.com/api/v1/"
+    private val baseUrl = "https://api-pizzeria.ddns.net/api/v1/"
 
     private val json = Json { ignoreUnknownKeys = true }
     val sessionManager = SessionManager(context)
